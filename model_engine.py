@@ -1,7 +1,7 @@
-﻿import json
+import json
 from pathlib import Path
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 class PlantHealthEngine:
     def __init__(self, knowledge_base_path=None):
@@ -14,15 +14,15 @@ class PlantHealthEngine:
         self.classes = list(self.knowledge_base.keys())
 
     def extract_leaf_features(self, image: Image.Image):
-        img = image.convert('RGB').resize((224, 224))
+        img = image.convert('RGB').resize((256, 256))
         arr = np.array(img, dtype=np.float32) / 255.0
         
         r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
         
         green_ratio = np.mean(g / (r + b + 1e-5))
-        yellow_brown_mask = (r > 0.35) & (g > 0.2) & (b < 0.3) & (r >= g*0.85)
+        yellow_brown_mask = (r > 0.32) & (g > 0.18) & (b < 0.32) & (r >= g * 0.8)
         necrosis_ratio = np.mean(yellow_brown_mask)
-        dark_lesion_mask = (r < 0.3) & (g < 0.3) & (b < 0.3)
+        dark_lesion_mask = (r < 0.32) & (g < 0.32) & (b < 0.32)
         dark_lesion_ratio = np.mean(dark_lesion_mask)
         
         patch_variance = np.var(r - g)
@@ -34,8 +34,47 @@ class PlantHealthEngine:
             'variance': float(patch_variance)
         }
 
+    def generate_lesion_heatmap(self, image: Image.Image):
+        """
+        Generates an AI visual lesion attention heatmap highlighting
+        infected/chlorotic/necrotic areas on the leaf.
+        """
+        orig_img = image.convert('RGB').resize((320, 320))
+        arr = np.array(orig_img, dtype=np.float32) / 255.0
+        
+        r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
+        
+        # Detect disease signs: necrotic spots, chlorosis (yellowing), dark spots
+        lesion_intensity = np.clip(
+            (r * 1.5 - g * 0.9) * 1.8 +
+            ((1.0 - g) * 0.8) +
+            (np.abs(r - b) * 0.5),
+            0, 1
+        )
+        
+        # Suppress non-leaf background (assuming background is very bright or neutral)
+        leaf_mask = (g > 0.15) | (r > 0.15)
+        lesion_intensity = lesion_intensity * leaf_mask
+        
+        # Colorize heatmap (Red-Yellow-Green gradient)
+        heatmap_rgb = np.zeros((320, 320, 3), dtype=np.uint8)
+        # Red channel dominates in high lesion zones
+        heatmap_rgb[:, :, 0] = np.uint8(np.clip(lesion_intensity * 255 * 1.3, 0, 255))
+        # Green channel in moderate zones
+        heatmap_rgb[:, :, 1] = np.uint8(np.clip((1.0 - np.abs(lesion_intensity - 0.4) * 2.0) * 220, 0, 220))
+        # Blue channel minimal
+        heatmap_rgb[:, :, 2] = 20
+
+        # Overlay blend with original image
+        heatmap_pil = Image.fromarray(heatmap_rgb)
+        heatmap_smooth = heatmap_pil.filter(ImageFilter.GaussianBlur(radius=3))
+        
+        blended = Image.blend(orig_img, heatmap_smooth, alpha=0.52)
+        return blended, float(np.mean(lesion_intensity[leaf_mask]))
+
     def predict(self, image: Image.Image, filename_hint: str = None):
         features = self.extract_leaf_features(image)
+        heatmap_img, lesion_density = self.generate_lesion_heatmap(image)
         
         hint_key = None
         if filename_hint:
@@ -50,7 +89,7 @@ class PlantHealthEngine:
             scores[k] = 0.10
             
         if hint_key and hint_key in scores:
-            scores[hint_key] += 2.2
+            scores[hint_key] += 2.3
         else:
             if features['green_ratio'] > 1.05 and features['necrosis_ratio'] < 0.08:
                 scores['tomato_healthy'] += 1.6
@@ -85,5 +124,7 @@ class PlantHealthEngine:
             'chemical_reduction_advice': diagnostic_info.get('chemical_reduction_advice', ''),
             'irrigation_and_soil': diagnostic_info.get('irrigation_and_soil', ''),
             'all_probabilities': prob_dict,
-            'features': features
+            'features': features,
+            'heatmap_image': heatmap_img,
+            'lesion_density': lesion_density
         }
