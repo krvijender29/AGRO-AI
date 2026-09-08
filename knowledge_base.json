@@ -1,0 +1,78 @@
+{
+  "tomato_early_blight": {
+    "crop": "Tomato",
+    "condition": "Early Blight (Alternaria solani)",
+    "status": "Infected",
+    "severity": "Moderate",
+    "sdg_impact": "SDG 2.4 - Promotes sustainable food production; avoids up to 35% harvest loss.",
+    "symptoms": "Concentric rings (target-like spots) on older leaves, lower leaves turning yellow and dropping prematurely.",
+    "eco_remedies": [
+      "Apply copper octanoate or bio-fungicide containing Bacillus subtilis.",
+      "Spray neem oil solution (0.5% concentration) bi-weekly as a natural antifungal deterrent.",
+      "Prune affected lower leaves immediately and dispose of them away from compost piles.",
+      "Apply organic mulch around tomato base to prevent fungal spores from splashing up from soil."
+    ],
+    "chemical_reduction_advice": "Avoid broad-spectrum synthetic chemical fungicides. Relying on bio-fungicides and proper spacing lowers toxic soil runoff by over 80%.",
+    "irrigation_and_soil": "Switch to drip irrigation. Keep foliage dry, and ensure a minimum 3-year crop rotation."
+  },
+  "tomato_healthy": {
+    "crop": "Tomato",
+    "condition": "Healthy Foliage",
+    "status": "Healthy",
+    "severity": "None",
+    "sdg_impact": "SDG 2 - Optimal photosynthetic activity, high expected harvest yield.",
+    "symptoms": "Uniform deep green leaf pigmentation, strong turgidity, no chlorosis or necrotic lesions.",
+    "eco_remedies": [
+      "Maintain existing organic compost feeding routine.",
+      "Inspect undersides of leaves weekly for early aphid or whitefly presence.",
+      "Apply bio-stimulants such as seaweed extract to reinforce natural plant immunity."
+    ],
+    "chemical_reduction_advice": "Zero synthetic chemicals needed. Continue organic biological pest management.",
+    "irrigation_and_soil": "Maintain consistent soil moisture (1-2 inches per week) to prevent blossom-end rot."
+  },
+  "potato_late_blight": {
+    "crop": "Potato",
+    "condition": "Late Blight (Phytophthora infestans)",
+    "status": "Critical",
+    "severity": "High",
+    "sdg_impact": "SDG 2.4 & SDG 12.3 - Mitigates catastrophic tuber loss and post-harvest decay.",
+    "symptoms": "Dark, water-soaked irregular patches on leaves with white fuzzy fungal growth on leaf undersides under humid conditions.",
+    "eco_remedies": [
+      "Immediately rogue and bury/destroy heavily infected plants to protect adjacent rows.",
+      "Apply copper sulfate (Bordeaux mixture) approved for organic farming under high humidity alerts.",
+      "Spray horsetail tea extract (Equisetum arvense) rich in natural silica to fortify leaf cuticle cell walls."
+    ],
+    "chemical_reduction_advice": "Proactive canopy airflow management reduces reliance on synthetic systemic fungicides by 65%.",
+    "irrigation_and_soil": "Avoid late evening sprinkler irrigation. Hill soil well over tubers to prevent spore wash-down."
+  },
+  "corn_common_rust": {
+    "crop": "Corn (Maize)",
+    "condition": "Common Rust (Puccinia sorghi)",
+    "status": "Infected",
+    "severity": "Moderate",
+    "sdg_impact": "SDG 2 - Protects staple grain yields vital for food security in vulnerable regions.",
+    "symptoms": "Oval to elongated cinnamon-brown pustules on upper and lower leaf surfaces.",
+    "eco_remedies": [
+      "Introduce beneficial microorganisms (e.g., Trichoderma harzianum soil and foliar treatments).",
+      "Dust with micro-fine wettable sulfur early in disease onset if humidity remains above 80%.",
+      "Adopt rust-resistant hybrid seed varieties for subsequent planting cycles."
+    ],
+    "chemical_reduction_advice": "Encouraging natural hyperparasites naturally curtails rust spread without pesticide resistance.",
+    "irrigation_and_soil": "Ensure balanced nitrogen application; excessive synthetic nitrogen stimulates lush, susceptible vegetative growth."
+  },
+  "bell_pepper_bacterial_spot": {
+    "crop": "Bell Pepper",
+    "condition": "Bacterial Leaf Spot (Xanthomonas spp.)",
+    "status": "Infected",
+    "severity": "Moderate to High",
+    "sdg_impact": "SDG 12 & SDG 13 - Prevents defoliation and sunscald without heavy synthetic chemicals.",
+    "symptoms": "Small, yellow-green spots turning brown with greasy margins; causes premature leaf drop and fruit lesions.",
+    "eco_remedies": [
+      "Apply bactericides formulated with fixed copper combined with Bacillus amyloliquefaciens.",
+      "Spray garlic and ginger aqueous extracts shown to inhibit bacterial motility.",
+      "Strictly sanitize pruning shears with 70% alcohol between handling each plant row."
+    ],
+    "chemical_reduction_advice": "Utilize certified pathogen-free hot-water-treated seeds rather than prophylactic antibiotic sprays.",
+    "irrigation_and_soil": "Never work among wet plants. Increase plant spacing to 45cm to promote rapid drying."
+  }
+}
