@@ -4,7 +4,9 @@
 [![1M1B Initiative](https://img.shields.io/badge/1M1B-AI%20for%20Sustainability-green)](https://www.1m1b.org/)
 [![SDG 2](https://img.shields.io/badge/UN%20SDG-2%20Zero%20Hunger-orange)](https://sdgs.un.org/goals/goal2)
 [![SDG 13](https://img.shields.io/badge/UN%20SDG-13%20Climate%20Action-blue)](https://sdgs.un.org/goals/goal13)
-[![Framework](https://img.shields.io/badge/Built%20With-Streamlit%20%7C%20Python-blueviolet)](https://streamlit.io/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://agro-ai-krvijender29.streamlit.app/)
+
+> 🌐 **Live Web Application**: [https://agro-ai-krvijender29.streamlit.app/](https://agro-ai-krvijender29.streamlit.app/)
 
 ---
 

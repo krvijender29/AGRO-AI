@@ -44,9 +44,9 @@ There is an urgent need for an accessible, edge-deployable AI tool that diagnose
 ---
 
 ### 6. GitHub / Prototype / Demo Links
-- **Local Prototype Directory:** gro_ai_sustainability
-- **GitHub Repository Link:** *(Insert your GitHub repo URL after pushing, e.g., https://github.com/your-username/agro-ai-sustainability)*
-- **Live Demo / Video Demonstration:** *(Attach screenshot or screen recording of the app running at http://localhost:8501)*
+- **Live Cloud Prototype:** [https://agro-ai-krvijender29.streamlit.app/](https://agro-ai-krvijender29.streamlit.app/)
+- **GitHub Repository Link:** [https://github.com/krvijender29/AGRO-AI](https://github.com/krvijender29/AGRO-AI) *(or your specific repo URL)*
+- **Local Workspace:** `D:\Vs Code\AI Projects\AGRO-AI`
 
 ---
 
